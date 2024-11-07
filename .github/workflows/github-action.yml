@@ -14,7 +14,7 @@ jobs:
   deploy:
     runs-on: [self-hosted]
     needs: build
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/master'
     steps:
       - name: Deploy to server
         uses: appleboy/ssh-action@v0.1.7
@@ -23,6 +23,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_KEY }}
           script: |
-            cd /home/azureuser/auto
+            cd /home/azureuser/luantran/devops/auto
             docker-compose down
             docker-compose up -d
